@@ -35,11 +35,41 @@ void Engine::start(Scene* scene)
     this->run();
 }
 
+void Engine::input(RunContext* ctx)
+{
+    const auto c = getch();
+    Keyboard input;
+    switch (c)
+    {
+    case KEY_UP:
+        input = UP;
+        break;
+    case KEY_DOWN:
+        input = DOWN;
+        break;
+    case KEY_LEFT:
+        input = LEFT;
+        break;
+    case KEY_RIGHT:
+        input = RIGHT;
+        break;
+    case KEY_ENTER:
+    case ' ':
+        input = CONFIRM;
+        break;
+    default:
+        input = NONE;
+    }
+    ctx->setInput(input);
+}
+
+
 void Engine::run()
 {
     while (true)
     {
         auto ctx = RunContext();
+        this->input(&ctx);
         this->scene->run(ctx);
         this->draw();
     }

@@ -1,16 +1,17 @@
-//
-// Created by enn3 on 10/05/24.
-//
-
 #ifndef RUNCONTEXT_H
 #define RUNCONTEXT_H
+#include "../Engine.h"
 
+class RunContext
+{
+private:
+    Keyboard input;
 
-
-class RunContext {
-
+public:
+    RunContext();
+    ~RunContext();
+    void setInput(Keyboard input);
+    Keyboard getInput();
 };
 
-
-
-#endif //RUNCONTEXT_H
+#endif
