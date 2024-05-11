@@ -58,7 +58,7 @@ int DrawContext::registerColorPair(const ColorPair colorPair)
     {
         if (this->colors[i] == colorPair)
         {
-            return i;
+            return i + 1;
         }
     }
     if (this->registeredColors >= MAX_COLORS)
