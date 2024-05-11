@@ -1,16 +1,18 @@
-//
-// Created by enn3 on 10/05/24.
-//
-
 #ifndef INITCONTEXT_H
 #define INITCONTEXT_H
 
+class InitContext
+{
+private:
+    /// Posizione della finestra rispetto al terminale
+    int startX, startY;
 
-
-class InitContext {
-
+public:
+    InitContext();
+    ~InitContext();
+    /// Usato dall'engine per impostare la posizione della finestra rispetto al terminale
+    void setStart(int x, int y);
+    int* getStart() const;
 };
 
-
-
-#endif //INITCONTEXT_H
+#endif

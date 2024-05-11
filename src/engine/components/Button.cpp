@@ -1,4 +1,5 @@
 #include "Button.h"
+#include <cstring>
 
 Button::Button()
 {
@@ -43,4 +44,9 @@ void Button::action(RunContext* ctx)
     {
         this->click(ctx);
     }
+}
+
+int Button::width()
+{
+    return strlen(this->txt);
 }

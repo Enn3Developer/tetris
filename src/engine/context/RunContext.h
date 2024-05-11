@@ -12,6 +12,7 @@ typedef enum keyboard
     DOWN,
     CONFIRM,
     ESCAPE,
+    CLICKED,
 } Keyboard;
 
 class RunContext
@@ -19,6 +20,8 @@ class RunContext
 private:
     /// L'input attuale da tastiera
     Keyboard input;
+    /// Posizione del mouse al momento del click
+    int x, y;
     /// Puntatore ad un'eventuale richiesta di cambiamento di scena
     Scene* switchScene;
     /// Richiesta di chiusura da parte dell'engine
@@ -31,7 +34,11 @@ public:
     ~RunContext();
     /// Usato dall'engine per impostare l'input attuale
     void setInput(Keyboard input);
+    /// Usato dall'engine per impostare la posizione del mouse al momento del click
+    void setMousePosition(int x, int y);
     [[nodiscard]] Keyboard getInput() const;
+    /// Ritorna x e y del mouse al momento del click
+    int* getMousePosition() const;
     void queueScene(Scene* scene);
     void queueExit();
     void forceRedraw();

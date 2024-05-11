@@ -23,8 +23,24 @@ void Drawable::setPosition(const int x, const int y)
     this->y = y;
 }
 
+int* Drawable::getPosition() const
+{
+    return new int[]{this->x, this->y};
+}
+
 Drawable::~Drawable() = default;
 
 void Drawable::draw(DrawContext* ctx)
 {
 }
+
+int Drawable::height()
+{
+    return 1;
+}
+
+int Drawable::width()
+{
+    return 1;
+}
+

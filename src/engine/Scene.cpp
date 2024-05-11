@@ -7,6 +7,7 @@ Scene::Scene()
     this->t_drawables = nullptr;
     this->size = 0;
     this->focus = nullptr;
+    this->startX = 0, this->startY = 0;
 }
 
 void Scene::add(Drawable* drawable)
@@ -113,6 +114,8 @@ void Scene::draw(DrawContext* ctx)
 
 void Scene::init(InitContext& ctx)
 {
+    const int* position = ctx.getStart();
+    this->startX = position[0], this->startY = position[1];
 }
 
 void Scene::run(RunContext* ctx)
@@ -135,7 +138,41 @@ void Scene::run(RunContext* ctx)
             }
         }
         break;
-    default:
+    case CLICKED:
+        const int* position = ctx->getMousePosition();
+        this->click(ctx, position[0] - this->startX, position[1] - this->startY);
         break;
     }
 }
+
+void Scene::click(RunContext* ctx, const int x, const int y)
+{
+    if (this->focus != nullptr)
+    {
+        this->focus->drawable->setHover(false);
+        this->focus = nullptr;
+    }
+    mvprintw(0, 0, "%d; %d", x, y);
+    p_list l = this->h_drawables;
+    while (l != nullptr)
+    {
+        Drawable* drawable = l->drawable;
+        const int* position = drawable->getPosition();
+        const int drawX = position[0];
+        const int drawY = position[1];
+        if (x >= drawX && x < drawX + drawable->width()
+            && (y >= drawY && y < drawY + drawable->height()))
+        {
+            if (auto* actionable = dynamic_cast<Actionable*>(drawable);
+                actionable != nullptr)
+            {
+                drawable->setHover(true);
+                this->focus = l;
+                actionable->action(ctx);
+                return;
+            }
+        }
+        l = l->next;
+    }
+}
+

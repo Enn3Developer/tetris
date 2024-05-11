@@ -17,6 +17,11 @@ public:
     [[nodiscard]] bool isVisible() const;
     void setHover(bool hover);
     void setPosition(int x, int y);
+    [[nodiscard]] int* getPosition() const;
+    /// Usato dalla scena per i click del mouse
+    virtual int width();
+    /// Usato dalla scena per i click del mouse
+    virtual int height();
     virtual ~Drawable();
     /// Chiamato per disegnare il singolo elemento
     virtual void draw(DrawContext* ctx);

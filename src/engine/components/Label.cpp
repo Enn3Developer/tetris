@@ -1,5 +1,7 @@
 #include "Label.h"
 
+#include <cstring>
+
 Label::Label()
 {
     this->color = 0;
@@ -32,3 +34,7 @@ void Label::draw(DrawContext* ctx)
     ctx->disableColor(this->color);
 }
 
+int Label::width()
+{
+    return strlen(this->txt);
+}

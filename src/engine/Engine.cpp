@@ -14,6 +14,7 @@ Engine::Engine(const int height, const int width, const int startX, const int st
     nodelay(stdscr, true);
     keypad(stdscr, true);
     curs_set(0);
+    mousemask(BUTTON1_CLICKED, nullptr);
     start_color();
     const auto win = newwin(height, width, startY, startX);
     refresh();
@@ -22,6 +23,7 @@ Engine::Engine(const int height, const int width, const int startX, const int st
     this->scene = nullptr;
     this->drawContext = DrawContext();
     this->drawContext.setWindow(win);
+    this->startX = startX, this->startY = startY;
 }
 
 Engine::~Engine()
@@ -36,16 +38,25 @@ void Engine::setTitle(const char* title)
 
 void Engine::start(Scene* scene)
 {
-    this->scene = scene;
-    auto ctx = InitContext();
-    this->scene->init(ctx);
+    this->initScene(scene);
     this->run();
 }
+
+void Engine::initScene(Scene* scene)
+{
+    this->scene = scene;
+    auto ctx = InitContext();
+    ctx.setStart(this->startX, this->startY);
+    this->scene->init(ctx);
+}
+
 
 void Engine::input(RunContext* ctx)
 {
     const auto c = getch();
     Keyboard input = NONE;
+    int x = 0, y = 0;
+    MEVENT mouseEvent;
     switch (c)
     {
     case KEY_UP:
@@ -70,11 +81,22 @@ void Engine::input(RunContext* ctx)
             input = ESCAPE;
         }
         break;
+    case KEY_MOUSE:
+        if (getmouse(&mouseEvent) == OK)
+        {
+            if (mouseEvent.bstate & BUTTON1_CLICKED)
+            {
+                input = CLICKED;
+                x = mouseEvent.x, y = mouseEvent.y;
+            }
+        }
+        break;
     default:
         input = NONE;
         break;
     }
     ctx->setInput(input);
+    ctx->setMousePosition(x, y);
 }
 
 
@@ -88,9 +110,7 @@ void Engine::run()
         this->scene->run(&ctx);
         if (ctx.sceneQueued())
         {
-            this->scene = ctx.newScene();
-            auto initCtx = InitContext();
-            this->scene->init(initCtx);
+            this->initScene(ctx.newScene());
             continue;
         }
         if (ctx.exitQueued())

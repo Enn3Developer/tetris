@@ -22,6 +22,7 @@ public:
     void draw(DrawContext* ctx) override;
     /// Rimanda l'azione alla funzione da eseguire
     void action(RunContext* ctx) override;
+    int width() override;
 };
 
 #endif

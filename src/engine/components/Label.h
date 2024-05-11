@@ -19,6 +19,7 @@ public:
     void setColor(ColorPair color);
     /// Se il colore non viene ancora registrato lo registra, usa quel colore per scrivere nella finestra il testo
     void draw(DrawContext* ctx) override;
+    int width() override;
 };
 
 #endif

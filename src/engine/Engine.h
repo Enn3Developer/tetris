@@ -11,12 +11,15 @@ private:
     DrawContext drawContext;
     /// Scena attuale
     Scene* scene;
+    int startX, startY;
 
 public:
     /// Prepara ncurses e crea la finestra principale
     Engine(int height, int width, int startX, int startY);
     /// Punto d'avvio del gioco
     void start(Scene* scene);
+    /// Inizializza una scena
+    void initScene(Scene* scene);
     /// Legge l'input dall'utente e lo salva nel `RunContext`
     static void input(RunContext* ctx);
     /// Eseguita in loop costante, richiama `input` e `draw` oltre a gestire il `RunContext`
