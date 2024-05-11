@@ -1,14 +1,10 @@
 #include "Label.h"
 
-Label::Label(const char* txt)
+Label::Label()
 {
-    this->txt = txt;
     this->color = 0;
     this->colorPair = DEFAULT_COLOR_PAIR;
-}
-
-Label::Label(): color(0), colorPair(DEFAULT_COLOR_PAIR), txt("")
-{
+    this->txt = "";
 }
 
 Label::~Label() = default;
@@ -32,7 +28,7 @@ void Label::draw(DrawContext* ctx)
         this->color = ctx->registerColorPair(this->colorPair);
     }
     ctx->enableColor(this->color);
-    ctx->writeAt(this->txt, x, y);
+    ctx->writeAt(this->txt, this->x, this->y);
     ctx->disableColor(this->color);
 }
 

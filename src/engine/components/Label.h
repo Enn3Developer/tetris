@@ -2,7 +2,7 @@
 #define LABEL_H
 #include "../Drawable.h"
 
-class Label : public Drawable
+class Label final : public Drawable
 {
 private:
     int color;
@@ -10,7 +10,6 @@ private:
     const char* txt;
 
 public:
-    explicit Label(const char* txt);
     Label();
     ~Label() override;
     void setText(const char* txt);

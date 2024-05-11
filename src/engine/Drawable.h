@@ -4,7 +4,7 @@
 
 class Drawable
 {
-private:
+protected:
     bool visible;
     bool hover;
     int x, y;
