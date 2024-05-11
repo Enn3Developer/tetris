@@ -5,7 +5,7 @@ MainScene::MainScene()
 {
     this->title.setText("Tetris");
     this->title.setPosition(37, 2);
-    const int x = 35;
+    constexpr int x = 35;
     this->title.setColor(ColorPair(COLOR_RED, COLOR_CYAN));
     this->newGame.setText("New Game");
     this->newGame.setPosition(x, 8);
