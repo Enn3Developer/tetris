@@ -7,7 +7,7 @@
 
 class Scene
 {
-private:
+protected:
     /// Lista per gestire tutti gli oggetti `Drawable`, non è circolare
     struct list
     {
