@@ -6,10 +6,12 @@ class Drawable
 {
 private:
     bool visible;
+    bool hover;
 
 public:
     Drawable();
     [[nodiscard]] bool isVisible() const;
+    void setHover(bool hover);
     virtual ~Drawable();
     virtual void draw(DrawContext* ctx);
 };
