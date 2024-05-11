@@ -71,6 +71,15 @@ void Engine::run()
         auto ctx = RunContext();
         this->input(&ctx);
         this->scene->run(ctx);
+        if (ctx.sceneQueued())
+        {
+            this->scene = ctx.newScene();
+            continue;
+        }
+        if (ctx.exitQueued())
+        {
+            break;
+        }
         this->draw();
     }
 }
