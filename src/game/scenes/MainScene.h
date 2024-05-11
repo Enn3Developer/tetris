@@ -6,7 +6,9 @@
 
 class MainScene final : public Scene
 {
-    Label label;
+    Label title;
+    Button newGame;
+    Button leaderboard;
     Button exit;
 
 public:
