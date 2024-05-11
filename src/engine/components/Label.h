@@ -5,15 +5,15 @@
 class Label : public Drawable
 {
 private:
-    int x, y;
     int color;
     ColorPair colorPair;
     const char* txt;
 
 public:
     explicit Label(const char* txt);
+    Label();
     ~Label() override;
-    void setPosition(int x, int y);
+    void setText(const char* txt);
     void setColor(ColorPair color);
     void draw(DrawContext* ctx) override;
 };

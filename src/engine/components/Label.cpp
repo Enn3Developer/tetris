@@ -3,21 +3,23 @@
 Label::Label(const char* txt)
 {
     this->txt = txt;
-    this->x = this->y = 0;
     this->color = 0;
     this->colorPair = DEFAULT_COLOR_PAIR;
 }
 
+Label::Label(): color(0), colorPair(DEFAULT_COLOR_PAIR), txt("")
+{
+}
+
 Label::~Label() = default;
 
-void Label::setPosition(const int x, const int y)
+void Label::setText(const char* txt)
 {
-    this->x = x;
-    this->y = y;
+    this->txt = txt;
 }
 
 
-void Label::setColor(ColorPair color)
+void Label::setColor(const ColorPair color)
 {
     this->colorPair = color;
     this->color = -1;
