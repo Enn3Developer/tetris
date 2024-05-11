@@ -5,9 +5,10 @@ Engine::Engine(const int height, const int width, const int startX, const int st
 {
     initscr();
     noecho();
+    nodelay(stdscr, true);
+    keypad(stdscr, true);
     const auto win = newwin(height, width, startY, startX);
     refresh();
-    nodelay(win, true);
     box(win, 0, 0);
     wrefresh(win);
     this->scene = nullptr;
@@ -38,8 +39,8 @@ void Engine::run()
     while (true)
     {
         auto ctx = RunContext();
-        auto draw = this->scene->run(ctx);
-        if (draw) this->draw();
+        this->scene->run(ctx);
+        this->draw();
     }
 }
 

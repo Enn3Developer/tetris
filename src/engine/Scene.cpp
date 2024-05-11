@@ -11,9 +11,8 @@ void Scene::init(InitContext& ctx)
 {
 }
 
-bool Scene::run(RunContext& ctx)
+void Scene::run(RunContext& ctx)
 {
-    return false;
 }
 
 

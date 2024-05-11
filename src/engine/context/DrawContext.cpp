@@ -15,7 +15,7 @@ void DrawContext::setWindow(WINDOW* win)
 
 void DrawContext::prepare() const
 {
-    wclear(this->win);
+    werase(this->win);
     box(this->win, 0, 0);
     mvwprintw(this->win, 0, 1, this->title);
 }

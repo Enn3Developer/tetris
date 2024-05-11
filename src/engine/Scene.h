@@ -8,7 +8,7 @@ class Scene
 {
 public:
     virtual void init(InitContext& ctx);
-    virtual bool run(RunContext& ctx);
+    virtual void run(RunContext& ctx);
     virtual void draw(DrawContext* ctx);
     virtual ~Scene();
 };
