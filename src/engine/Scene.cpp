@@ -1,5 +1,4 @@
 #include "Scene.h"
-
 #include "Actionable.h"
 
 Scene::Scene()
@@ -54,7 +53,7 @@ void Scene::focusUp()
     bool loop = false;
     while (this->focus != nullptr)
     {
-        if (dynamic_cast<Actionable*>(this->focus->drawable) != nullptr)
+        if (dynamic_cast<Actionable*>(this->focus->drawable) != nullptr && this->focus->drawable->isVisible())
         {
             this->focus->drawable->setHover(true);
             break;
@@ -83,7 +82,7 @@ void Scene::focusDown()
     bool loop = false;
     while (this->focus != nullptr)
     {
-        if (dynamic_cast<Actionable*>(this->focus->drawable) != nullptr)
+        if (dynamic_cast<Actionable*>(this->focus->drawable) != nullptr && this->focus->drawable->isVisible())
         {
             this->focus->drawable->setHover(true);
             break;
