@@ -22,5 +22,7 @@ add_executable(Tetris src/main.cpp
         src/engine/ColorPair.h
         src/engine/ColorPair.cpp
         src/engine/components/Button.h
-        src/engine/components/Button.cpp)
+        src/engine/components/Button.cpp
+        src/engine/Actionable.h
+        src/engine/Actionable.cpp)
 target_link_libraries(Tetris ${CURSES_LIBRARIES})

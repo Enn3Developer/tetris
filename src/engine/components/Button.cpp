@@ -4,6 +4,7 @@ Button::Button()
 {
     this->hoverColor = -1;
     this->txt = "";
+    this->click = nullptr;
 }
 
 Button::~Button() = default;
@@ -12,6 +13,12 @@ void Button::setText(const char* txt)
 {
     this->txt = txt;
 }
+
+void Button::setOnClick(void (*click)(RunContext* ctx))
+{
+    this->click = click;
+}
+
 
 void Button::draw(DrawContext* ctx)
 {
@@ -30,3 +37,10 @@ void Button::draw(DrawContext* ctx)
     }
 }
 
+void Button::action(RunContext* ctx)
+{
+    if (this->click != nullptr)
+    {
+        this->click(ctx);
+    }
+}
