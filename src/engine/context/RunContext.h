@@ -1,6 +1,17 @@
 #ifndef RUNCONTEXT_H
 #define RUNCONTEXT_H
-#include "../Engine.h"
+
+class Scene;
+
+typedef enum keyboard
+{
+    NONE,
+    LEFT,
+    RIGHT,
+    UP,
+    DOWN,
+    CONFIRM,
+} Keyboard;
 
 class RunContext
 {

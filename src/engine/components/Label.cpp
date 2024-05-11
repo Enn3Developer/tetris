@@ -4,7 +4,7 @@ Label::Label(const char* txt)
 {
     this->txt = txt;
     this->x = this->y = 0;
-    this->color = 1;
+    this->color = 0;
     this->colorPair = DEFAULT_COLOR_PAIR;
 }
 

@@ -37,6 +37,10 @@ void DrawContext::setTitle(const char* title)
 
 int DrawContext::registerColorPair(const ColorPair colorPair)
 {
+    if (colorPair == DEFAULT_COLOR_PAIR)
+    {
+        return 0;
+    }
     for (int i = 0; i < this->registeredColors; i++)
     {
         if (this->colors[i] == colorPair)

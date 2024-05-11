@@ -2,16 +2,6 @@
 #define ENGINE_H
 #include "Scene.h"
 
-typedef enum keyboard
-{
-    NONE,
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    CONFIRM,
-} Keyboard;
-
 class Engine
 {
 private:
