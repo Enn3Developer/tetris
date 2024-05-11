@@ -7,6 +7,7 @@ Engine::Engine(const int height, const int width, const int startX, const int st
     noecho();
     nodelay(stdscr, true);
     keypad(stdscr, true);
+    curs_set(0);
     start_color();
     const auto win = newwin(height, width, startY, startX);
     refresh();
