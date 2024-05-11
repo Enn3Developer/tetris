@@ -4,6 +4,9 @@ DrawContext::DrawContext()
 {
     this->win = nullptr;
     this->title = "";
+    this->colors = new ColorPair[MAX_COLORS]{DEFAULT_COLOR_PAIR};
+    this->registeredColors = 0;
+    this->registerColorPair(DEFAULT_COLOR_PAIR);
 }
 
 DrawContext::~DrawContext() = default;
@@ -30,6 +33,37 @@ void DrawContext::refresh() const
 void DrawContext::setTitle(const char* title)
 {
     this->title = title;
+}
+
+int DrawContext::registerColorPair(const ColorPair colorPair)
+{
+    for (int i = 0; i < this->registeredColors; i++)
+    {
+        if (this->colors[i] == colorPair)
+        {
+            return i + 1;
+        }
+    }
+    if (this->registeredColors >= MAX_COLORS)
+    {
+        printw("REACHED MAXIMUM REGISTERED COLORS");
+        refresh();
+        exit_curses(1);
+    }
+    this->colors[this->registeredColors] = colorPair;
+    init_pair(this->registeredColors, colorPair.foreground, colorPair.background);
+    this->registeredColors += 1;
+    return this->registeredColors;
+}
+
+void DrawContext::enableColor(const int color)
+{
+    attron(COLOR_PAIR(color));
+}
+
+void DrawContext::disableColor(const int color)
+{
+    attroff(COLOR_PAIR(color));
 }
 
 

@@ -14,5 +14,11 @@ add_executable(Tetris src/main.cpp
         src/engine/context/RunContext.h
         src/engine/context/RunContext.cpp
         src/game/scenes/MainScene.h
-        src/game/scenes/MainScene.cpp)
+        src/game/scenes/MainScene.cpp
+        src/engine/Drawable.h
+        src/engine/Drawable.cpp
+        src/engine/components/Label.h
+        src/engine/components/Label.cpp
+        src/engine/ColorPair.h
+        src/engine/ColorPair.cpp)
 target_link_libraries(Tetris ${CURSES_LIBRARIES})

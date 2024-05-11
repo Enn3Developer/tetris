@@ -1,15 +1,15 @@
 #ifndef MAINSCENE_H
 #define MAINSCENE_H
 #include "../../engine/Scene.h"
+#include "../../engine/components/Label.h"
 
-class MainScene : public Scene
+class MainScene final : public Scene
 {
+    Label label;
+
 public:
     MainScene();
     ~MainScene() override;
-    void init(InitContext& ctx) override;
-    void run(RunContext& ctx) override;
-    void draw(DrawContext* ctx) override;
 };
 
 #endif
