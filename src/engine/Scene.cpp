@@ -44,8 +44,9 @@ void Scene::focusUp()
     if (this->focus != nullptr)
     {
         this->focus->drawable->setHover(false);
+        this->focus = this->focus->prev;
     }
-    else
+    if (this->focus == nullptr)
     {
         this->focus = this->t_drawables;
     }
@@ -72,8 +73,9 @@ void Scene::focusDown()
     if (this->focus != nullptr)
     {
         this->focus->drawable->setHover(false);
+        this->focus = this->focus->next;
     }
-    else
+    if (this->focus == nullptr)
     {
         this->focus = this->h_drawables;
     }
