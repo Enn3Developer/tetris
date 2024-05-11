@@ -1,5 +1,11 @@
 #include "Engine.h"
 #include "Scene.h"
+#include <ctime>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 Engine::Engine(const int height, const int width, const int startX, const int startY)
 {
@@ -76,8 +82,9 @@ void Engine::run()
 {
     while (true)
     {
+        const int64_t start = millis();
         auto ctx = RunContext();
-        this->input(&ctx);
+        input(&ctx);
         this->scene->run(&ctx);
         if (ctx.sceneQueued())
         {
@@ -91,6 +98,11 @@ void Engine::run()
             break;
         }
         this->draw(ctx.redrawForced());
+        if (const int64_t end = millis();
+            end - start <= MILLIS_PER_FRAME)
+        {
+            sleep(MILLIS_PER_FRAME - (end - start));
+        }
     }
 }
 
@@ -99,4 +111,20 @@ void Engine::draw(const bool redraw)
     this->drawContext.prepare(redraw);
     this->scene->draw(&this->drawContext);
     this->drawContext.refresh();
+}
+
+void Engine::sleep(unsigned int millis)
+{
+#ifdef _WIN32
+    Sleep(millis);
+#else
+    usleep(millis * 1000);
+#endif
+}
+
+int64_t Engine::millis()
+{
+    timespec now{};
+    timespec_get(&now, TIME_UTC);
+    return now.tv_sec * 1000 + now.tv_nsec / 1000000;
 }
