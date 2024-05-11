@@ -16,9 +16,22 @@ void DrawContext::setWindow(WINDOW* win)
     this->win = win;
 }
 
-void DrawContext::prepare() const
+WINDOW* DrawContext::getWindow() const
 {
-    werase(this->win);
+    return this->win;
+}
+
+
+void DrawContext::prepare(const bool redraw) const
+{
+    if (redraw)
+    {
+        clear();
+    }
+    else
+    {
+        werase(this->win);
+    }
     box(this->win, 0, 0);
     mvwprintw(this->win, 0, 1, this->title);
 }
@@ -45,7 +58,7 @@ int DrawContext::registerColorPair(const ColorPair colorPair)
     {
         if (this->colors[i] == colorPair)
         {
-            return i + 1;
+            return i;
         }
     }
     if (this->registeredColors >= MAX_COLORS)
@@ -55,19 +68,19 @@ int DrawContext::registerColorPair(const ColorPair colorPair)
         exit_curses(1);
     }
     this->colors[this->registeredColors] = colorPair;
-    init_pair(this->registeredColors, colorPair.foreground, colorPair.background);
     this->registeredColors += 1;
+    init_pair(this->registeredColors, colorPair.foreground, colorPair.background);
     return this->registeredColors;
 }
 
-void DrawContext::enableColor(const int color)
+void DrawContext::enableColor(const int color) const
 {
-    attron(COLOR_PAIR(color));
+    wattron(this->win, COLOR_PAIR(color));
 }
 
-void DrawContext::disableColor(const int color)
+void DrawContext::disableColor(const int color) const
 {
-    attroff(COLOR_PAIR(color));
+    wattroff(this->win, COLOR_PAIR(color));
 }
 
 

@@ -13,7 +13,7 @@ public:
     void start(Scene* scene);
     void input(RunContext* ctx);
     void run();
-    void draw();
+    void draw(bool redraw);
     void setTitle(const char* title);
     ~Engine();
 };

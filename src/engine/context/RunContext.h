@@ -11,6 +11,7 @@ typedef enum keyboard
     UP,
     DOWN,
     CONFIRM,
+    ESCAPE,
 } Keyboard;
 
 class RunContext
@@ -19,6 +20,7 @@ private:
     Keyboard input;
     Scene* switchScene;
     bool exit;
+    bool redraw;
 
 public:
     RunContext();
@@ -27,8 +29,10 @@ public:
     [[nodiscard]] Keyboard getInput() const;
     void queueScene(Scene* scene);
     void queueExit();
+    void forceRedraw();
     [[nodiscard]] bool sceneQueued() const;
     [[nodiscard]] bool exitQueued() const;
+    bool redrawForced();
     [[nodiscard]] Scene* newScene() const;
 };
 

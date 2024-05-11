@@ -1,7 +1,6 @@
 #ifndef DRAWCONTEXT_H
 #define DRAWCONTEXT_H
 #include <ncurses.h>
-
 #include "../ColorPair.h"
 
 constexpr int MAX_COLORS = 32;
@@ -19,12 +18,13 @@ public:
     DrawContext();
     ~DrawContext();
     void setWindow(WINDOW* win);
+    WINDOW* getWindow() const;
     void refresh() const;
-    void prepare() const;
+    void prepare(bool redraw) const;
     void setTitle(const char* title);
     int registerColorPair(ColorPair colorPair);
-    void enableColor(int color);
-    void disableColor(int color);
+    void enableColor(int color) const;
+    void disableColor(int color) const;
     void write(const char* txt) const;
     void writeAt(const char* txt, int x, int y) const;
 };

@@ -5,6 +5,7 @@ MainScene::MainScene()
 {
     this->label.setText("Main Scene");
     this->label.setPosition(10, 10);
+    this->label.setColor(ColorPair(COLOR_RED));
     this->exit.setText("Exit");
     this->exit.setPosition(10, 15);
     this->exit.setOnClick(exitButton);

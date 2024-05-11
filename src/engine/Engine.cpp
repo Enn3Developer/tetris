@@ -38,7 +38,7 @@ void Engine::start(Scene* scene)
 void Engine::input(RunContext* ctx)
 {
     const auto c = getch();
-    Keyboard input;
+    Keyboard input = NONE;
     switch (c)
     {
     case KEY_UP:
@@ -53,12 +53,19 @@ void Engine::input(RunContext* ctx)
     case KEY_RIGHT:
         input = RIGHT;
         break;
-    case KEY_ENTER:
+    case '\n':
     case ' ':
         input = CONFIRM;
         break;
+    case 27: // ESCAPE or ALT
+        if (getch() == ERR)
+        {
+            input = ESCAPE;
+        }
+        break;
     default:
         input = NONE;
+        break;
     }
     ctx->setInput(input);
 }
@@ -70,23 +77,25 @@ void Engine::run()
     {
         auto ctx = RunContext();
         this->input(&ctx);
-        this->scene->run(ctx);
+        this->scene->run(&ctx);
         if (ctx.sceneQueued())
         {
             this->scene = ctx.newScene();
+            auto initCtx = InitContext();
+            this->scene->init(initCtx);
             continue;
         }
         if (ctx.exitQueued())
         {
             break;
         }
-        this->draw();
+        this->draw(ctx.redrawForced());
     }
 }
 
-void Engine::draw()
+void Engine::draw(const bool redraw)
 {
-    this->drawContext.prepare();
+    this->drawContext.prepare(redraw);
     this->scene->draw(&this->drawContext);
     this->drawContext.refresh();
 }

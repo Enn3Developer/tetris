@@ -12,19 +12,23 @@ private:
     {
         Drawable* drawable;
         list* next;
+        list* prev;
     };
 
     typedef list* p_list;
     p_list h_drawables;
     p_list t_drawables;
     int size;
+    p_list focus;
 
 public:
     Scene();
     void add(Drawable* drawable);
     [[nodiscard]] Drawable* get(int idx) const;
+    void focusUp();
+    void focusDown();
     virtual void init(InitContext& ctx);
-    virtual void run(RunContext& ctx);
+    virtual void run(RunContext* ctx);
     virtual void draw(DrawContext* ctx);
     virtual ~Scene();
 };
