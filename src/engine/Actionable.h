@@ -7,6 +7,7 @@ class Actionable
 {
 public:
     virtual ~Actionable();
+    /// Azione da eseguire
     virtual void action(RunContext* ctx);
 };
 
