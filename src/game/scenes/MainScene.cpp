@@ -8,6 +8,7 @@ MainScene::MainScene()
     this->title.setColor(ColorPair(COLOR_RED, COLOR_CYAN));
     this->newGame.setText("New Game");
     this->newGame.setPosition(36, 8);
+    this->newGame.setOnClick(newGameButton);
     this->leaderboard.setText("Leaderboard");
     this->leaderboard.setPosition(35, 11);
     this->exit.setText("Exit");
@@ -30,4 +31,10 @@ const char* MainScene::getTitle()
 void exitButton(RunContext* ctx)
 {
     ctx->queueExit();
+}
+
+void newGameButton(RunContext* ctx)
+{
+    game = Game();
+    ctx->queueScene(&game);
 }

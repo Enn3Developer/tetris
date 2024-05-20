@@ -152,7 +152,6 @@ void Scene::click(RunContext* ctx, const int x, const int y)
         this->focus->drawable->setHover(false);
         this->focus = nullptr;
     }
-    mvprintw(0, 0, "%d; %d", x, y);
     p_list l = this->h_drawables;
     while (l != nullptr)
     {
