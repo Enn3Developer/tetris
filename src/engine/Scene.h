@@ -45,6 +45,8 @@ public:
     virtual void run(RunContext* ctx);
     /// Chiamata ad ogni frame per disegnare la scena
     virtual void draw(DrawContext* ctx);
+    /// Chiamato la prima volta dall'engine quando istanzia una nuova scena
+    virtual const char* getTitle();
     virtual ~Scene();
 };
 

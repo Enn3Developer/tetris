@@ -14,6 +14,7 @@ class MainScene final : public Scene
 public:
     MainScene();
     ~MainScene() override;
+    const char* getTitle() override;
 };
 
 void exitButton(RunContext* ctx);

@@ -12,7 +12,7 @@ public:
     ~InitContext();
     /// Usato dall'engine per impostare la posizione della finestra rispetto al terminale
     void setStart(int x, int y);
-    int* getStart() const;
+    [[nodiscard]] int* getStart() const;
 };
 
 #endif

@@ -176,3 +176,7 @@ void Scene::click(RunContext* ctx, const int x, const int y)
     }
 }
 
+const char* Scene::getTitle()
+{
+    return "Scene";
+}

@@ -45,6 +45,7 @@ void Engine::start(Scene* scene)
 void Engine::initScene(Scene* scene)
 {
     this->scene = scene;
+    this->drawContext.setTitle(this->scene->getTitle());
     auto ctx = InitContext();
     ctx.setStart(this->startX, this->startY);
     this->scene->init(ctx);

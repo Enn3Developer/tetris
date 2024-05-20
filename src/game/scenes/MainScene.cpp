@@ -21,6 +21,12 @@ MainScene::MainScene()
 
 MainScene::~MainScene() = default;
 
+const char* MainScene::getTitle()
+{
+    return "Menu";
+}
+
+
 void exitButton(RunContext* ctx)
 {
     ctx->queueExit();
