@@ -179,3 +179,9 @@ const char* Scene::getTitle()
 {
     return "Scene";
 }
+
+int Scene::getCenteredX(Drawable* drawable)
+{
+    const auto x = 80 - drawable->width();
+    return x % 2 ? x / 2 : (x - 1) / 2;
+}

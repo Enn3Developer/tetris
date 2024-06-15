@@ -4,15 +4,15 @@
 MainScene::MainScene()
 {
     this->title.setText("Tetris");
-    this->title.setPosition(37, 2);
+    this->title.setPosition(getCenteredX(&this->title), 2);
     this->title.setColor(ColorPair(COLOR_RED, COLOR_CYAN));
     this->newGame.setText("New Game");
-    this->newGame.setPosition(36, 8);
+    this->newGame.setPosition(getCenteredX(&this->newGame), 8);
     this->newGame.setOnClick(newGameButton);
     this->leaderboard.setText("Leaderboard");
-    this->leaderboard.setPosition(35, 11);
+    this->leaderboard.setPosition(getCenteredX(&this->leaderboard), 11);
     this->exit.setText("Exit");
-    this->exit.setPosition(38, 14);
+    this->exit.setPosition(getCenteredX(&this->exit), 14);
     this->exit.setOnClick(exitButton);
     this->add(&this->title);
     this->add(&this->newGame);

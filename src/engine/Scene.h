@@ -39,6 +39,8 @@ public:
     void focusDown();
     /// Usato quando si riceve un click del mouse
     void click(RunContext* ctx, int x, int y);
+    /// Usato per centrare il testo
+    static int getCenteredX(Drawable* drawable);
     /// Chiamata una sola volta quando la scena diventa la scena attuale nell'engine
     virtual void init(InitContext& ctx);
     /// Chiamata ad ogni frame per eseguire la logica della scena
