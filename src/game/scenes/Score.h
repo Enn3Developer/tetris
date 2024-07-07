@@ -6,25 +6,28 @@ using namespace std;
 
 class Score{
 protected:
-    string name;
-    int punteggio;
-    sting tempo;
+    char name[20];
+    char punteggio[10];
+    char tempo[10];
     public :
-        Score (string n, int p, string t){
+        Score (char[] n, char[] p, char[] t){
         name = n;
         punteggio = p;
         tempo = t;
     }
 
-    string toString(){
-        string ss;
-        ss= name + " " + punteggio + " " + tempo;
+    char toString(){
+        char ss[45]="";
+		strcat(ss, name);
+		strcat(ss, " ");
+		strcat(ss, punteggio);
+		strcat(ss, " ");
+		strcat(ss, tempo);
         return ss;
     }
 
-    void fromString(string s){
-        name= input.find(' ');
-        time= input.rfind(' ');
+    void fromString(char[] ss){
+
     }
 };
 
