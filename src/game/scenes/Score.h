@@ -10,25 +10,11 @@ protected:
     char punteggio[10];
     char tempo[10];
     public :
-        Score (char[] n, char[] p, char[] t){
-        name = n;
-        punteggio = p;
-        tempo = t;
-    }
+        Score (char[] n, char[] p, char[] t);
 
-    char toString(){
-        char ss[45]="";
-		strcat(ss, name);
-		strcat(ss, " ");
-		strcat(ss, punteggio);
-		strcat(ss, " ");
-		strcat(ss, tempo);
-        return ss;
-    }
+    char* toString();
 
-    void fromString(char[] ss){
-
-    }
+    static void fromString(char[] ss);
 };
 
 
