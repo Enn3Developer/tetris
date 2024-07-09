@@ -26,5 +26,9 @@ add_executable(Tetris src/main.cpp
         src/engine/Actionable.h
         src/engine/Actionable.cpp
         src/game/scenes/Game.h
-        src/game/scenes/Game.cpp)
+        src/game/scenes/Game.cpp
+        src/game/scenes/Score.h
+        src/game/scenes/Score.cpp
+        src/engine/File.cpp
+        src/engine/File.h)
 target_link_libraries(Tetris ${CURSES_LIBRARIES})
