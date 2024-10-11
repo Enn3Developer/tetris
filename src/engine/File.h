@@ -14,8 +14,6 @@ public:
     File (char name, char t);
     char* read_file();
     void write_file();
-
-    }
 }
 
 #endif //FILE_H
