@@ -3,7 +3,7 @@
 
 int main()
 {
-    auto engine = Engine(40, 80, 40, 2);
+    auto engine = Engine(30, 80, 40, 2);
     auto scene = MainScene();
     engine.start(&scene);
     return 0;
