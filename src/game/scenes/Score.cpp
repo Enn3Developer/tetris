@@ -2,7 +2,7 @@
 
 Score::Score (char[] n, char[] p, char[] t){
     strcpy(name,n);
-    strcpy(punteggio, p);
+    punteggio=p;
     strcpy(tempo, t);
 }
 
@@ -21,7 +21,10 @@ static void Score::fromString(char[] ss){
     p=strtok (ss," ");
     strcpy(name, p);
     p=strtok (NULL," ");
-    strcpy(punteggio, p);
+	for(int i=0; i<strlen(p); i++){
+	punteggio=punteggio*10;
+    punteggio=(int)(punteggio+p-'0');
+	}
     p=strtok (NULL," ");
     strcpy(tempo, p);
 }

@@ -6,11 +6,11 @@ using namespace std;
 
 class Score{
 protected:
-    char name[20];
-    char punteggio[10];
-    char tempo[10];
-    public :
-        Score (char[] n, char[] p, char[] t);
+    char[20] name;
+    int punteggio;
+    char[10] tempo;
+public :
+	Score (char[] n, int p, char[] t);
 
     char* toString();
 

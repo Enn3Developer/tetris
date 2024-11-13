@@ -7,7 +7,7 @@ File::File(char name, t){
 
 char* File:: read_file(){
 	ifstream inputFile;
-	char name[20];
+	char[20] name;
 	strcpy(file_name, name);
 	strcat(name, ".txt");
 	inputFile.open(name);
@@ -20,7 +20,7 @@ char* File:: read_file(){
 
 void write_file(){
 	ofstream outputFile;
-	char name[20];
+	char[20] name;
 	strcpy(file_name, name);
 	strcat(name, ".txt");
 	outputFile.open(name);

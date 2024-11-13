@@ -8,12 +8,12 @@ using namespace std;
 
 class File{
 protected:
-    char file_name[20];
-    char text[200];
+    char[20] file_name;
+    char[200] text;
 public:
     File (char name, char t);
     char* read_file();
     void write_file();
-}
+};
 
 #endif //FILE_H
