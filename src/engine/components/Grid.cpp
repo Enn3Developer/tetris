@@ -20,7 +20,7 @@ bool Grid::has_fallen() const {
     return true;
 }
 
-bool Grid::collides(GridDrawable *drawable) const {
+bool Grid::collides(const GridDrawable *drawable) const {
     const bool *shape = drawable->getShape();
     const int startX = drawable->getX();
     // spostiamo la Y di 1 verso il basso per poter trovare tutti i punti in cui
@@ -43,7 +43,7 @@ bool Grid::collides(GridDrawable *drawable) const {
     return false;
 }
 
-void Grid::addToGrid(GridDrawable *drawable) const {
+void Grid::addToGrid(const GridDrawable *drawable) const {
     const bool *shape = drawable->getShape();
     const int startX = drawable->getX();
     const int startY = drawable->getY();
@@ -137,4 +137,7 @@ bool *GridDrawable::getShape() const {
 
 
 void GridDrawable::draw(DrawContext *ctx, int x, int y) {
+}
+
+void GridDrawable::rotate() {
 }

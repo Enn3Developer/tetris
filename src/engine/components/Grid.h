@@ -34,6 +34,8 @@ public:
 
     virtual void draw(DrawContext *ctx, int x, int y);
 
+    virtual void rotate();
+
     virtual ~GridDrawable();
 };
 
@@ -53,9 +55,9 @@ protected:
     bool *grid;
     p_list h_drawables;
 
-    bool collides(GridDrawable *drawable) const;
+    bool collides(const GridDrawable *drawable) const;
 
-    void addToGrid(GridDrawable *drawable) const;
+    void addToGrid(const GridDrawable *drawable) const;
 
 public:
     Grid(int width, int height);
