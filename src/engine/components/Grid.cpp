@@ -21,18 +21,18 @@ bool Grid::has_fallen() const {
 }
 
 bool Grid::collides(GridDrawable *drawable) const {
-    const bool *shape = drawable->shape();
+    const bool *shape = drawable->getShape();
     const int startX = drawable->getX();
     // spostiamo la Y di 1 verso il basso per poter trovare tutti i punti in cui
     // la shape tocca i blocchettini gia' presenti nella griglia
     const int startY = drawable->getY() - 1;
 
-    for (int x = 0; x < drawable->width(); x++) {
-        for (int y = 0; y < drawable->height(); y++) {
+    for (int x = 0; x < drawable->getWidth(); x++) {
+        for (int y = 0; y < drawable->getHeight(); y++) {
             const int gridX = startX + x;
             const int gridY = startY + y;
             const bool gridValue = this->grid[gridY * this->grid_width + gridX];
-            const bool shapeValue = shape[y * drawable->width() + x];
+            const bool shapeValue = shape[y * drawable->getWidth() + x];
             // se la shape tocca la griglia, il nand tra di loro e' true quindi possiamo ritornare subito true
             if (!(gridValue && shapeValue)) {
                 return true;
@@ -44,14 +44,14 @@ bool Grid::collides(GridDrawable *drawable) const {
 }
 
 void Grid::addToGrid(GridDrawable *drawable) const {
-    const bool *shape = drawable->shape();
+    const bool *shape = drawable->getShape();
     const int startX = drawable->getX();
     const int startY = drawable->getY();
-    for (int x = 0; x < drawable->width(); x++) {
-        for (int y = 0; y < drawable->height(); y++) {
+    for (int x = 0; x < drawable->getWidth(); x++) {
+        for (int y = 0; y < drawable->getHeight(); y++) {
             const int gridX = startX + x;
             const int gridY = startY + y;
-            this->grid[gridY * this->grid_width + gridX] = shape[y * drawable->width() + x];
+            this->grid[gridY * this->grid_width + gridX] = shape[y * drawable->getWidth() + x];
         }
     }
 }
@@ -121,16 +121,16 @@ int GridDrawable::getY() const {
 }
 
 
-int GridDrawable::width() {
-    return 1;
+int GridDrawable::getWidth() const {
+    return this->width;
 }
 
-int GridDrawable::height() {
-    return 1;
+int GridDrawable::getHeight() const {
+    return this->height;
 }
 
-bool *GridDrawable::shape() {
-    return new bool{true};
+bool *GridDrawable::getShape() const {
+    return this->shape;
 }
 
 

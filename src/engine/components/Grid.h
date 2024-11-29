@@ -11,6 +11,8 @@ class GridDrawable {
 protected:
     /// posizione all'interno della griglia partendo dall'angolo basso sinistro
     int x, y;
+    int width, height;
+    bool *shape;
 
 public:
     GridDrawable();
@@ -23,12 +25,12 @@ public:
 
     [[nodiscard]] int getY() const;
 
-    virtual int width();
+    [[nodiscard]] int getWidth() const;
 
-    virtual int height();
+    [[nodiscard]] int getHeight() const;
 
     /// Il primo elemento si trova nell'angolo in basso a sinistra
-    virtual bool *shape();
+    [[nodiscard]] bool *getShape() const;
 
     virtual void draw(DrawContext *ctx, int x, int y);
 
