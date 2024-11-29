@@ -30,7 +30,7 @@ public:
     /// Il primo elemento si trova nell'angolo in basso a sinistra
     virtual bool *shape();
 
-    virtual void draw(DrawContext *ctx);
+    virtual void draw(DrawContext *ctx, int x, int y);
 
     virtual ~GridDrawable();
 };

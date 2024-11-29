@@ -71,6 +71,8 @@ void Grid::tick(RunContext *ctx) const {
                 this->h_drawables->fallen = true;
                 this->h_drawables->counter_step = FALLING_SPEED;
             }
+        } else {
+            // TODO: rotate shapes
         }
     }
 }
@@ -86,7 +88,11 @@ int Grid::height() {
 void Grid::draw(DrawContext *ctx) {
     p_list l = this->h_drawables;
     while (l != nullptr) {
-        l->drawable->draw(ctx);
+        l->drawable->draw(
+            ctx,
+            l->drawable->getX() + this->x,
+            l->drawable->getY() + this->y
+        );
         l = l->next;
     }
 }
@@ -128,5 +134,5 @@ bool *GridDrawable::shape() {
 }
 
 
-void GridDrawable::draw(DrawContext *ctx) {
+void GridDrawable::draw(DrawContext *ctx, int x, int y) {
 }

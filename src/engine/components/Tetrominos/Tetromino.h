@@ -4,10 +4,13 @@
 
 class Tetromino : public GridDrawable {
 protected:
-    int color;
+    int color = -1;
+    ColorPair colorPair;
 
 public:
-    explicit Tetromino(int color);
+    explicit Tetromino(ColorPair colorPair);
+
+    void draw(DrawContext *ctx, int x, int y) override;
 };
 
 #endif
