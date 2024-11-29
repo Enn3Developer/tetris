@@ -19,6 +19,10 @@ public:
 
     [[nodiscard]] int *getPosition() const;
 
+    [[nodiscard]] int getX() const;
+
+    [[nodiscard]] int getY() const;
+
     virtual int width();
 
     virtual int height();
@@ -46,6 +50,10 @@ protected:
     /// Per accedere al punto P(x,y) bisogna fare grid[y * grid_width + x]
     bool *grid;
     p_list h_drawables;
+
+    bool collides(GridDrawable *drawable) const;
+
+    void addToGrid(GridDrawable *drawable) const;
 
 public:
     Grid(int width, int height);

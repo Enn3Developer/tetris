@@ -20,13 +20,57 @@ bool Grid::has_fallen() const {
     return true;
 }
 
+bool Grid::collides(GridDrawable *drawable) const {
+    const bool *shape = drawable->shape();
+    const int startX = drawable->getX();
+    // spostiamo la Y di 1 verso il basso per poter trovare tutti i punti in cui
+    // la shape tocca i blocchettini gia' presenti nella griglia
+    const int startY = drawable->getY() - 1;
+
+    for (int x = 0; x < drawable->width(); x++) {
+        for (int y = 0; y < drawable->height(); y++) {
+            const int gridX = startX + x;
+            const int gridY = startY + y;
+            const bool gridValue = this->grid[gridY * this->grid_width + gridX];
+            const bool shapeValue = shape[y * drawable->width() + x];
+            // se la shape tocca la griglia, il nand tra di loro e' true quindi possiamo ritornare subito true
+            if (!(gridValue && shapeValue)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+void Grid::addToGrid(GridDrawable *drawable) const {
+    const bool *shape = drawable->shape();
+    const int startX = drawable->getX();
+    const int startY = drawable->getY();
+    for (int x = 0; x < drawable->width(); x++) {
+        for (int y = 0; y < drawable->height(); y++) {
+            const int gridX = startX + x;
+            const int gridY = startY + y;
+            this->grid[gridY * this->grid_width + gridX] = shape[y * drawable->width() + x];
+        }
+    }
+}
+
 void Grid::tick(RunContext *ctx) const {
     if (this->h_drawables != nullptr && !this->h_drawables->fallen) {
         this->h_drawables->counter_step -= 1;
         if (this->h_drawables->counter_step == 0) {
-            const int *position = this->h_drawables->drawable->getPosition();
-            int x = position[0];
-            int y = position[1];
+            GridDrawable *drawable = this->h_drawables->drawable;
+            if (this->collides(drawable)) {
+                this->addToGrid(drawable);
+            } else {
+                const int *position = drawable->getPosition();
+                const int x = position[0];
+                const int y = position[1];
+                drawable->setPosition(x, y - 1);
+                this->h_drawables->fallen = true;
+                this->h_drawables->counter_step = FALLING_SPEED;
+            }
         }
     }
 }
@@ -61,6 +105,15 @@ void GridDrawable::setPosition(const int x, const int y) {
 int *GridDrawable::getPosition() const {
     return new int[]{this->x, this->y};
 }
+
+int GridDrawable::getX() const {
+    return this->x;
+}
+
+int GridDrawable::getY() const {
+    return this->y;
+}
+
 
 int GridDrawable::width() {
     return 1;
