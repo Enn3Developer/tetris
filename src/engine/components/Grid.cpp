@@ -99,6 +99,8 @@ void Grid::draw(DrawContext *ctx) {
 
 GridDrawable::GridDrawable() {
     this->x = this->y = 0;
+    this->width = this->height = 1;
+    this->shape = new bool[]{true};
 }
 
 GridDrawable::~GridDrawable() = default;
