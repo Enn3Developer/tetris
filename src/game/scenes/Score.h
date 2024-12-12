@@ -1,20 +1,21 @@
 #ifndef SCORE_H
 #define SCORE_H
 #include <iostream>
-#include <cstring>
+#include <string>
+
 using namespace std;
 
 class Score{
 protected:
-    char[20] name;
+    string name;
     int punteggio;
-    char[10] tempo;
+    string tempo;
 public :
-	Score (char[] n, int p, char[] t);
+	Score (string n, int p, string t);
 
-    char* toString();
+    string toString();
 
-    static void fromString(char[] ss);
+    void fromString(string ss);
 };
 
 

@@ -1,31 +1,29 @@
 #include "Score.h"
 
-Score::Score (char[] n, char[] p, char[] t){
-    strcpy(name,n);
+Score::Score (string n, int p, string t){
+    name=n;
     punteggio=p;
-    strcpy(tempo, t);
+    tempo=t;
 }
 
-char* Score::toString(){
-    char ss[45]="";
-    strcat(ss, name);
-	strcat(ss, " ");
-	strcat(ss, punteggio);
-	strcat(ss, " ");
-    strcat(ss, tempo);
+string Score::toString(){
+    string ss;
+    ss=ss+name+" ";
+	string str_punteggio=to_string(punteggio);
+	ss=ss+str_punteggio+" ";
+	ss=ss+tempo;
     return ss;
 }
 
-static void Score::fromString(char[] ss){
-    char* p;
-    p=strtok (ss," ");
-    strcpy(name, p);
-    p=strtok (NULL," ");
-	for(int i=0; i<strlen(p); i++){
-	punteggio=punteggio*10;
-    punteggio=(int)(punteggio+p-'0');
-	}
-    p=strtok (NULL," ");
-    strcpy(tempo, p);
+void Score::fromString(string ss){
+	string delimiter=" ";
+	name=ss.substr(0, ss.find(delimiter));
+	ss.erase(0, ss.find(delimiter) + delimiter.length());
+
+	string str_punteggio=ss.substr(0, ss.find(delimiter));
+	punteggio=stoi(str_punteggio);
+	ss.erase(0, ss.find(delimiter) + delimiter.length());
+
+	tempo=ss.substr(0, ss.find(delimiter));
 }
 

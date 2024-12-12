@@ -1,18 +1,18 @@
 #ifndef FILE_H
 #define FILE_H
 #include <iostream>
-#include <cstring>
+#include <string>
 #include <fstream>
 
 using namespace std;
 
 class File{
 protected:
-    char[20] file_name;
-    char[200] text;
+    string file_name;
+    string text;
 public:
-    File (char name, char t);
-    char* read_file();
+    File (string name, string t);
+    string read_file();
     void write_file();
 };
 

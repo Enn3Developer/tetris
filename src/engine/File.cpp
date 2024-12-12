@@ -1,29 +1,23 @@
 #include "File.h"
 
-File::File(char name, t){
-	strcpy(file_name, name);
-	strcpy(text, t);
+File::File(string name, string t){
+	file_name=name;
+	text=t;
 }
 
-char* File:: read_file(){
+string File:: read_file(){
 	ifstream inputFile;
-	char[20] name;
-	strcpy(file_name, name);
-	strcat(name, ".txt");
-	inputFile.open(name);
+	inputFile.open(file_name);
 	while(!inputFile.eof()){
-		inputFile.get(text);
+		text += inputFile.get();
 	}
 	inputFile.close();
 	return text;
 }
 
-void write_file(){
+void File::write_file(){
 	ofstream outputFile;
-	char[20] name;
-	strcpy(file_name, name);
-	strcat(name, ".txt");
-	outputFile.open(name);
+	outputFile.open(file_name);
 	outputFile<<text;
 	outputFile<<"\n";
 	outputFile.close();
