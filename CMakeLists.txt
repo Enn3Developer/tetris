@@ -30,7 +30,7 @@ add_executable(Tetris src/main.cpp
         src/game/scenes/Score.h
         src/game/scenes/Score.cpp
         src/engine/File.cpp
-        src/engine/File.h)
+        src/engine/File.h
         src/engine/components/Tetrominos/Tetromino.h
         src/engine/components/Tetrominos/Tetromino.cpp
         src/engine/components/Grid.cpp
