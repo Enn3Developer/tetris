@@ -1,5 +1,7 @@
 #include "Grid.h"
 
+#include "../context/RunContext.h"
+
 Grid::Grid(const int width, const int height) {
     this->grid_width = width;
     this->grid_height = height;
@@ -56,7 +58,7 @@ void Grid::addToGrid(const GridDrawable *drawable) const {
     }
 }
 
-void Grid::tick(RunContext *ctx) const {
+void Grid::tick(const RunContext *ctx) const {
     if (this->h_drawables != nullptr && !this->h_drawables->fallen) {
         this->h_drawables->counter_step -= 1;
         if (this->h_drawables->counter_step == 0) {
@@ -72,7 +74,21 @@ void Grid::tick(RunContext *ctx) const {
                 this->h_drawables->counter_step = FALLING_SPEED;
             }
         } else {
-            // TODO: rotate shapes
+            if (const auto input = ctx->getInput(); input != NONE) {
+                switch (input) {
+                    case LEFT:
+                        this->h_drawables->drawable->rotate(true);
+                        break;
+                    case RIGHT:
+                        this->h_drawables->drawable->rotate(false);
+                        break;
+                    case CONFIRM:
+                        // TODO: add fast fall
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
@@ -139,5 +155,5 @@ bool *GridDrawable::getShape() const {
 void GridDrawable::draw(DrawContext *ctx, int x, int y) {
 }
 
-void GridDrawable::rotate() {
+void GridDrawable::rotate(bool left) {
 }

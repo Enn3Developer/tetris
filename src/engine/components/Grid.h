@@ -34,7 +34,7 @@ public:
 
     virtual void draw(DrawContext *ctx, int x, int y);
 
-    virtual void rotate();
+    virtual void rotate(bool left);
 
     virtual ~GridDrawable();
 };
@@ -66,7 +66,7 @@ public:
 
     [[nodiscard]] bool has_fallen() const;
 
-    void tick(RunContext *ctx) const;
+    void tick(const RunContext *ctx) const;
 
     int width() override;
 
