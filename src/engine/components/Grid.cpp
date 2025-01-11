@@ -23,6 +23,12 @@ bool Grid::has_fallen() const {
 }
 
 bool Grid::collides(const GridDrawable *drawable) const {
+    // controlliamo prima che il tetromino sia in fondo alla griglia
+    if (drawable->getY() == 0) {
+        // se lo e', allora sta collidendo con la griglia
+        return true;
+    }
+
     const bool *shape = drawable->getShape();
     const int startX = drawable->getX();
     // spostiamo la Y di 1 verso il basso per poter trovare tutti i punti in cui
@@ -83,7 +89,7 @@ void Grid::tick(const RunContext *ctx) const {
                         this->h_drawables->drawable->rotate(false);
                         break;
                     case CONFIRM:
-                        // TODO: add fast fall
+                        this->h_drawables->counter_step = 0;
                         break;
                     default:
                         break;
