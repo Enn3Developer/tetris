@@ -108,6 +108,7 @@ int Grid::height() {
 }
 
 void Grid::draw(DrawContext *ctx) {
+    // TODO: draw grid borders
     p_list l = this->h_drawables;
     while (l != nullptr) {
         l->drawable->draw(
