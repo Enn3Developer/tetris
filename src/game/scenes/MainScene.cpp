@@ -1,8 +1,7 @@
 #include "MainScene.h"
 #include "../../engine/components/Label.h"
 
-MainScene::MainScene()
-{
+MainScene::MainScene() {
     this->title.setText("Tetris");
     this->title.setPosition(getCenteredX(&this->title), 2);
     this->title.setColor(ColorPair(COLOR_RED, COLOR_CYAN));
@@ -22,19 +21,16 @@ MainScene::MainScene()
 
 MainScene::~MainScene() = default;
 
-const char* MainScene::getTitle()
-{
+const char *MainScene::getTitle() {
     return "Menu";
 }
 
 
-void exitButton(RunContext* ctx)
-{
+void exitButton(RunContext *ctx) {
     ctx->queueExit();
 }
 
-void newGameButton(RunContext* ctx)
-{
-    game = Game();
-    ctx->queueScene(&game);
+void newGameButton(RunContext *ctx) {
+    game = new Game();
+    ctx->queueScene(game);
 }

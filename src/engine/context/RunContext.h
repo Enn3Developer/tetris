@@ -56,7 +56,7 @@ public:
     [[nodiscard]] bool exitQueued() const;
 
     /// Usato dall'engine per controllare se deve forzare il `clear()`
-    bool redrawForced();
+    bool redrawForced() const;
 
     /// Puntatore alla nuova scena da usare
     [[nodiscard]] Scene *newScene() const;

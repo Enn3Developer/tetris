@@ -1,14 +1,10 @@
 #ifndef MAINSCENE_H
 #define MAINSCENE_H
-#include "Game.h"
 #include "../../engine/Scene.h"
 #include "../../engine/components/Button.h"
 #include "../../engine/components/Label.h"
 
-inline Game game;
-
-class MainScene final : public Scene
-{
+class MainScene final : public Scene {
     Label title;
     Button newGame;
     Button leaderboard;
@@ -16,11 +12,17 @@ class MainScene final : public Scene
 
 public:
     MainScene();
+
     ~MainScene() override;
-    const char* getTitle() override;
+
+    const char *getTitle() override;
 };
 
-void exitButton(RunContext* ctx);
-void newGameButton(RunContext* ctx);
+void exitButton(RunContext *ctx);
+
+void newGameButton(RunContext *ctx);
+
+#include "Game.h"
+inline Game *game;
 
 #endif

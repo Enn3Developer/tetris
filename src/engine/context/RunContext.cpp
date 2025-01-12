@@ -1,7 +1,6 @@
 #include "RunContext.h"
 
-RunContext::RunContext()
-{
+RunContext::RunContext() {
     this->input = NONE;
     this->switchScene = nullptr;
     this->exit = false;
@@ -11,61 +10,50 @@ RunContext::RunContext()
 
 RunContext::~RunContext() = default;
 
-void RunContext::setInput(const Keyboard input)
-{
+void RunContext::setInput(const Keyboard input) {
     this->input = input;
 }
 
-void RunContext::setMousePosition(const int x, const int y)
-{
+void RunContext::setMousePosition(const int x, const int y) {
     this->x = x, this->y = y;
 }
 
 
-Keyboard RunContext::getInput() const
-{
+Keyboard RunContext::getInput() const {
     return this->input;
 }
 
-int* RunContext::getMousePosition() const
-{
+int *RunContext::getMousePosition() const {
     return new int[]{this->x, this->y};
 }
 
 
-void RunContext::queueExit()
-{
+void RunContext::queueExit() {
     this->exit = true;
 }
 
-void RunContext::queueScene(Scene* scene)
-{
+void RunContext::queueScene(Scene *scene) {
     this->switchScene = scene;
 }
 
-void RunContext::forceRedraw()
-{
+void RunContext::forceRedraw() {
     this->redraw = true;
 }
 
 
-bool RunContext::exitQueued() const
-{
+bool RunContext::exitQueued() const {
     return this->exit;
 }
 
-bool RunContext::sceneQueued() const
-{
+bool RunContext::sceneQueued() const {
     return this->switchScene != nullptr;
 }
 
-bool RunContext::redrawForced()
-{
+bool RunContext::redrawForced() const {
     return this->redraw;
 }
 
 
-Scene* RunContext::newScene() const
-{
+Scene *RunContext::newScene() const {
     return this->switchScene;
 }
