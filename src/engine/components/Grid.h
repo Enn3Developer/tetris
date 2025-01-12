@@ -57,11 +57,13 @@ protected:
 
     bool collides(const GridDrawable *drawable) const;
 
+    /// Prende un GridDrawable e lo aggiunge alla grid interna
     void addToGrid(const GridDrawable *drawable) const;
 
 public:
     Grid(int width, int height);
 
+    /// Aggiunge il GridDrawable alla griglia che verra' gestito come tetramino in caduta
     void spawn(GridDrawable *tetromino);
 
     [[nodiscard]] bool has_fallen() const;
