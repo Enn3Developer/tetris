@@ -2,8 +2,7 @@
 #define DRAWABLE_H
 #include "context/DrawContext.h"
 
-class Drawable
-{
+class Drawable {
 protected:
     /// Visibilità
     bool visible;
@@ -14,17 +13,27 @@ protected:
 
 public:
     Drawable();
+
     [[nodiscard]] bool isVisible() const;
+
+    void setVisible(bool visible);
+
     void setHover(bool hover);
+
     void setPosition(int x, int y);
-    [[nodiscard]] int* getPosition() const;
+
+    [[nodiscard]] int *getPosition() const;
+
     /// Usato dalla scena per i click del mouse
     virtual int width();
+
     /// Usato dalla scena per i click del mouse
     virtual int height();
+
     virtual ~Drawable();
+
     /// Chiamato per disegnare il singolo elemento
-    virtual void draw(DrawContext* ctx);
+    virtual void draw(DrawContext *ctx);
 };
 
 #endif
