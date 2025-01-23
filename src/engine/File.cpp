@@ -1,12 +1,12 @@
 #include "File.h"
 
-File::File(string name, string t){
+File::File(string name){
 	file_name=name;
-	text=t;
 }
 
 string File:: read_file(){
 	ifstream inputFile;
+	string text="";
 	inputFile.open(file_name);
 	while(!inputFile.eof()){
 		text += inputFile.get();
@@ -15,11 +15,10 @@ string File:: read_file(){
 	return text;
 }
 
-void File::write_file(){
+void File::write_file(string text){
 	ofstream outputFile;
 	outputFile.open(file_name);
 	outputFile<<text;
 	outputFile<<"\n";
 	outputFile.close();
-	return;
 }

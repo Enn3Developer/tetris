@@ -36,5 +36,7 @@ add_executable(Tetris src/main.cpp
         src/engine/components/Grid.cpp
         src/engine/components/Grid.h
         src/engine/components/Tetrominos/SquareTetromino.cpp
-        src/engine/components/Tetrominos/SquareTetromino.h)
+        src/engine/components/Tetrominos/SquareTetromino.h
+        src/game/scenes/Scoreboard.cpp
+        src/game/scenes/Scoreboard.h)
 target_link_libraries(Tetris ${CURSES_LIBRARIES})

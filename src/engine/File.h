@@ -9,11 +9,10 @@ using namespace std;
 class File{
 protected:
     string file_name;
-    string text;
 public:
-    File (string name, string t);
+    File (string name);
     string read_file();
-    void write_file();
+    void write_file(string text);
 };
 
 #endif //FILE_H

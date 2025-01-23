@@ -9,13 +9,13 @@ class Score{
 protected:
     string name;
     int punteggio;
-    string tempo;
+    long tempo;
 public :
-	Score (string n, int p, string t);
+	Score (string n, int p, long t);
 
     string toString();
 
-    void fromString(string ss);
+    static Score fromString(string ss);
 };
 
 
