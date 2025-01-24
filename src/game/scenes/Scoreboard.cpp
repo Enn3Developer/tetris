@@ -37,17 +37,6 @@ p_split_list split(string s,string delimiter) {
     return res;
 }
 
-string time_to_string(long time) {
-    string str_time="";
-    string hour, min, second;
-
-    hour=to_string(time/3600/1000)%24;
-    min=to_string(time/60/1000)%60;
-    second=to_string(time/1000)%60;
-    str_time=hour+"hours"+min+"minutes"+second+"seconds";
-    return str_time;
-}
-
 Scoreboard::Scoreboard() {
     File file= new File("Score.txt");
     string text=file.read_file();
@@ -96,15 +85,6 @@ Scoreboard::Scoreboard() {
             before = before->next;
         }
     } while (swapped==true);
-
-    //inizio stampo
-    p_list print=this->list;
-    while(print!=NULL){}
-    string str_time=time_to_string(print->score->tempo);
-    cout << "Name: " << print->score->name
-             << ", Point: " << print->score->punteggio
-             << ", Time: " << str_time<< endl;
-    print=print->next;
 }
 
 
