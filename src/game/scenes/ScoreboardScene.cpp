@@ -26,7 +26,7 @@ ScoreboardScene::ScoreboardScene()
     int rank=1;
     int height=9;
     p_list print= Scoreboard::list;
-    for(print!=NULL) {
+    while(print!=NULL) {
         string str_time=time_to_string(print->score->tempo);
         string str_rank=to_string(rank);
         string score=str_rank+"\t"+print->score->name+"\t"+print->score->punteggio+"\t"+str_time;
